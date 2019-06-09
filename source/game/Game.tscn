@@ -63,6 +63,7 @@ stretch_margin_bottom = 1
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource( 7 )]
 visible = false
 [connection signal="health_depleted" from="Player" to="." method="_on_Player_health_depleted"]
+[connection signal="overheat" from="Player" to="." method="_on_Player_overheat"]
 [connection signal="shot_fired" from="Player" to="." method="_on_Player_shot_fired"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

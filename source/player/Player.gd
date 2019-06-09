@@ -64,17 +64,14 @@ func _physics_process(delta):
 	if right:
 		if motion.x < -ACCELERATION:
 			motion.x = min(motion.x + BACKWARDS_ACCELERATION, MAX_SPEED);
-			# $FrictionParticle.emit_for_motion(lastFrameMotion);
 		else:
 			motion.x = min(motion.x + ACCELERATION, MAX_SPEED);
 	elif left:
 		if motion.x > ACCELERATION:
 			motion.x = max(motion.x - BACKWARDS_ACCELERATION, -MAX_SPEED);
-			# $FrictionParticle.emit_for_motion(lastFrameMotion);
 		else:
 			motion.x = max(motion.x - ACCELERATION, -MAX_SPEED);
 	else:
-		# $FrictionParticle.set_emitting(false);
 		motion.x = lerp(motion.x, 0, FRICTION);
 
 	if down:
@@ -119,7 +116,7 @@ func shoot(delta):
 		$BetweenShotsCooldown.wait_time = 0.1 - (0.1 * overheatPercentage);
 		shot_spread = lerp(0, MAX_SHOT_SPREAD * overheatPercentage, 0.2);
 		var bullet = Instance.Bullet(global_position, rotation_degrees, MAX_BULLET_SPEED * overheatPercentage, shot_spread);
-		motion.y += 100;
+		motion.y += 100 * overheatPercentage;
 		bullet.shooter = self
 		get_parent().bullets.add_child(bullet);
 
